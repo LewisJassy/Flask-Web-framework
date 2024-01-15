@@ -28,7 +28,7 @@ def register():
     form = RegstrationForm()
     if form.validate_on_submit():
         flash("Registration successful!", "success")
-        return redirect(url_for('login'))
+        return redirect(url_for('home'))
     return render_template("register.html", title='Register', form=form)
 
 @app.route("/login")
