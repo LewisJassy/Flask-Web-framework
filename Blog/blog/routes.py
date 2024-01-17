@@ -1,10 +1,11 @@
 from blog.form import RegstrationForm, LoginForm
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, get_flashed_messages
 from blog.models import User, Post
 from blog import app
 @app.route('/')
 def home():
-    return render_template("home.html")
+    message = get_flashed_messages(with_categories=True)
+    return render_template("home.html", message=message)
 
 @app.route("/about")
 def about():
@@ -18,7 +19,7 @@ def register():
         return redirect(url_for('home'))
     return render_template("register.html", title='Register', form=form)
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit:
