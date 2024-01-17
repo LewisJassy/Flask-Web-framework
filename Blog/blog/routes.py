@@ -2,7 +2,7 @@ from blog.form import RegstrationForm, LoginForm
 from flask import render_template, url_for, flash, redirect, get_flashed_messages
 from blog.models import User, Post
 from blog import app, db, bcrypt
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 def home():
     message = get_flashed_messages(with_categories=True)
@@ -42,3 +42,9 @@ def login():
 def logout_user():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/account")
+@login_required
+def account():
+    return render_template('account.html')
+
