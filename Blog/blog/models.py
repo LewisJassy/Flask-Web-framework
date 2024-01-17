@@ -1,4 +1,4 @@
-from Blog.run import db
+from blog import db
 from datetime import datetime
 
 class User(db.Model):
