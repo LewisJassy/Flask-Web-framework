@@ -13,8 +13,11 @@
       {{ form.hidden_tag() }}
       {{ form.csrf_token }}
       {% for field in form if field.name != 'password' %}
-        {{ render_field(field) }}
+        {% if field.type != 'SubmitField' %}
+          {{ render_field(field) }}
+        {% endif %}
       {% endfor %}
+      <button type="submit" class="btn btn-primary">Update</button>
   </form>
   </div>
 {% endblock content %}
