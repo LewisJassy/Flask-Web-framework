@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% from "bootstrap5/form.html" import render_form %}
+{% from "bootstrap5/form.html" import render_field %}
 {% block content %}
     <div class="content-section">
         <form method="post" action="{{url_for('login')}}">
             {{ form.hidden_tag() }}
-            {{ render_form(form) }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
