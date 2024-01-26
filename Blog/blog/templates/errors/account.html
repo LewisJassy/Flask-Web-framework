@@ -9,7 +9,7 @@
         <p class="text-secondary">{{ current_user.email }}</p>
       </div>
     </div>
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
       {{ form.hidden_tag() }}
       {{ form.csrf_token }}
       {% for field in form if field.name != 'password' %}
@@ -17,6 +17,13 @@
           {{ render_field(field) }}
         {% endif %}
       {% endfor %}
+      <div class="form-group">
+        {{ form.picture.label() }}
+        {{form.picture(class="form-control-file")}}
+        {% if form.picture.errors %}
+          <!-- <span class="help-block text-danger">{{ form.picture.errors }}</span></br>         -->
+        {% endif %}
+      </div>
       <button type="submit" class="btn btn-primary">Update</button>
   </form>
   </div>
